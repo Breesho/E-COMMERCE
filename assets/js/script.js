@@ -29,7 +29,48 @@ idLens.addEventListener('click', function() {
     idRowLens.style.display = 'block';
     idRowAccessory.style.display = 'none';
     idRowReflex.style.display = 'none';
+
+  
 });
 
 
 
+// let refprix = recupere data-prix
+// let refid = recupere data-id
+
+
+
+// btnEclairagePhoto.addEventListener('click', () => {
+    
+
+//     let createRowEclairagePhoto = document.createElement('p');
+//     createRowEclairagePhoto.textContent = refprix + refid;
+//     modal-body.appendChild(createRowEclairagePhoto);
+// }
+
+// let refid = getid;
+// let refprix = getprix
+
+// click sur le bouton dunction {
+//     let ajout = getid + get prix 
+// }
+
+
+
+// PAS OUBLIER FOR EACH POUR R2CUPERER DATA BOUTON !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+let infobutton = document.querySelectorAll(".getinfo");
+let elementP = document.querySelector("p");
+
+
+infobutton.forEach(function (element) {
+  element.onclick = function () {
+    let typeid = element.dataset.id;
+    let typeprice = element.dataset.price;
+    let info = document.createElement('p');
+    info.innerHTML = typeid + typeprice;
+    putinfo.appendChild(info);
+ 
+  }
+});

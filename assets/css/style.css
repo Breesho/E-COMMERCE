@@ -2,21 +2,18 @@ body, html {
     font-family: 'Roboto', sans-serif;
 }
 
-
-
 .carousel-item {
-height: 500px;
+    height: 500px;
 }
 .btn-modif {
-    color: #7971ea;
     border: none;
     background-color: inherit;
     font-weight: 500;
-
     text-transform: uppercase;
 }
 .btn-modif:hover {
-text-decoration: underline;
+    text-decoration: underline; 
+    color: #7971ea;
 }
 
 
