@@ -57,6 +57,11 @@ footer {
     border-top: solid 1px rgb(202, 202, 202);
 }
 
+@media screen and (max-width: 1200px) {  
+    #carouselExampleCaptions {
+        display: none;
+    }
+}
 
 @media screen and (max-width: 768px) {  
   
