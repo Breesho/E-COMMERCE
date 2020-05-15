@@ -16,11 +16,14 @@ body, html {
     color: #7971ea;
 }
 
-
-
 .img-slider {
     width: 100%;
     height: auto;
     background-size:cover;
     background-position: center bottom;
+}
+
+.buttonModalCart {
+    width: 200px;
+    height: 40px;
 }

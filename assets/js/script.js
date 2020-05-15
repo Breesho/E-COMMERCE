@@ -7,30 +7,30 @@ let idRowAccessory = document.querySelector('#sectionAccessory');
 let idRowLens = document.querySelector('#sectionLens');
 let idRowReflex = document.querySelector('#sectionReflex');
 
-idAll.addEventListener('click', function() {
+idAll.addEventListener('click', function () {
     idRowAccessory.style.display = 'block';
     idRowReflex.style.display = 'block';
     idRowLens.style.display = 'block';
 });
 
-idReflex.addEventListener('click', function() {
+idReflex.addEventListener('click', function () {
     idRowReflex.style.display = 'block';
     idRowAccessory.style.display = 'none';
     idRowLens.style.display = 'none';
 });
 
-idAccessory.addEventListener('click', function() {
+idAccessory.addEventListener('click', function () {
     idRowAccessory.style.display = 'block';
     idRowLens.style.display = 'none';
     idRowReflex.style.display = 'none';
 });
 
-idLens.addEventListener('click', function() {
+idLens.addEventListener('click', function () {
     idRowLens.style.display = 'block';
     idRowAccessory.style.display = 'none';
     idRowReflex.style.display = 'none';
 
-  
+
 });
 
 
@@ -41,7 +41,7 @@ idLens.addEventListener('click', function() {
 
 
 // btnEclairagePhoto.addEventListener('click', () => {
-    
+
 
 //     let createRowEclairagePhoto = document.createElement('p');
 //     createRowEclairagePhoto.textContent = refprix + refid;
@@ -60,17 +60,34 @@ idLens.addEventListener('click', function() {
 // PAS OUBLIER FOR EACH POUR R2CUPERER DATA BOUTON !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
+
+
+
 let infobutton = document.querySelectorAll(".getinfo");
 let elementP = document.querySelector("p");
 
 
 infobutton.forEach(function (element) {
-  element.onclick = function () {
-    let typeid = element.dataset.id;
-    let typeprice = element.dataset.price;
-    let info = document.createElement('p');
-    info.innerHTML = typeid + typeprice;
-    putinfo.appendChild(info);
- 
-  }
+    // let i = 1;
+    element.onclick = function () {
+        let typeid = element.dataset.id;
+        let typeprice = element.dataset.price;
+        let info = document.createElement('tr');
+        // info.id = 'trRow' + i;
+        // i++
+        info.innerHTML = `<td>Produit :</td><td> ${typeid} </td><td> ${typeprice} </td><td><input type="number" min="1" max="10"></td><td><button type="button" class="btn btn-primary buttonModalCart">Supprimer du panier</bouton></td>`;
+        putinfo.appendChild(info);
+        let buttonRemove = document.getElementsByClassName('.buttonModalCart');
+        
+    }
+    
+    
 });
+
+
+
+
+
+
+
+
