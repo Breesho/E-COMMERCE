@@ -35,57 +35,32 @@ idLens.addEventListener('click', function () {
 
 
 
-// let refprix = recupere data-prix
-// let refid = recupere data-id
-
-
-
-// btnEclairagePhoto.addEventListener('click', () => {
-
-
-//     let createRowEclairagePhoto = document.createElement('p');
-//     createRowEclairagePhoto.textContent = refprix + refid;
-//     modal-body.appendChild(createRowEclairagePhoto);
-// }
-
-// let refid = getid;
-// let refprix = getprix
-
-// click sur le bouton dunction {
-//     let ajout = getid + get prix 
-// }
-
-
-
-// PAS OUBLIER FOR EACH POUR R2CUPERER DATA BOUTON !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
 
 
 
 let infobutton = document.querySelectorAll(".getinfo");
-let elementP = document.querySelector("p");
-
 
 infobutton.forEach(function (element) {
-    // let i = 1;
     element.onclick = function () {
         let typeid = element.dataset.id;
         let typeprice = element.dataset.price;
         let info = document.createElement('tr');
-        // info.id = 'trRow' + i;
-        // i++
+        info.className = 'trow'   
         info.innerHTML = `<td>Produit :</td><td> ${typeid} </td><td> ${typeprice} </td><td><input type="number" min="1" max="10"></td><td><button type="button" class="btn btn-primary buttonModalCart">Supprimer du panier</bouton></td>`;
         putinfo.appendChild(info);
-        let buttonRemove = document.getElementsByClassName('.buttonModalCart');
+
+
+        let removerow= document.querySelectorAll('.trow');
         
+        for (let i = 0; i < removerow.length; i++) {
+            let deletebutton = removerow[i]
+            deletebutton.addEventListener('click', deleterow)
+        }
+        function deleterow() {
+            this.remove();
+        }
     }
-    
-    
 });
-
-
-
 
 
 
