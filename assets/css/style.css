@@ -27,3 +27,14 @@ body, html {
     width: 200px;
     height: 40px;
 }
+a.getinfo  {
+    background-color: #7971ea;
+    color: white;
+}
+.card-footer{
+    background-color:#393e46;
+}
+.alignText {
+    line-height: 38px;
+    color: white;
+}
