@@ -51,14 +51,21 @@ infobutton.forEach(function (element) {
         putinfo.appendChild(info);
 
 
-        let removerow= document.querySelectorAll('.trow');
+
+
+
+
+
+
+        let removeCartItemButtons = document.querySelectorAll('.buttonModalCart');
         
-        for (let i = 0; i < removerow.length; i++) {
-            let deletebutton = removerow[i]
-            deletebutton.addEventListener('click', deleterow)
+        for (let i = 0; i < removeCartItemButtons.length; i++) {
+            let button = removeCartItemButtons[i]
+            button.addEventListener('click', removeCartItem)
         }
-        function deleterow() {
-            this.remove();
+        function removeCartItem(event) {
+               let buttonCliked = event.target;
+               buttonCliked.parentElement.parentElement.remove()
         }
     }
 });
