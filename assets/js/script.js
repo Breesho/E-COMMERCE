@@ -39,26 +39,35 @@ idLens.addEventListener('click', function () {
 
 
 let infobutton = document.querySelectorAll(".getinfo");
+let i = 0;
 
 infobutton.forEach(function (element) {
+    
+    let articles = [];
+    let d = 2;
+
     element.onclick = function () {
-        let typeid = element.dataset.id;
-        let typeprice = element.dataset.price;
-        let typeref = element.dataset.ref
-        let info = document.createElement('tr');
-        info.className = 'trow'   
-        info.innerHTML = `<td>Produit :</td><td> ${typeid} </td><td> ${typeprice} </td><td><input type="number" min="1" max="10"></td><td><button type="button" class="btn btn-primary buttonModalCart">Supprimer du panier</bouton></td>`;
-        putinfo.appendChild(info);
-
-
-
-
-
-
-
-
-        let removeCartItemButtons = document.querySelectorAll('.buttonModalCart');
+      
+        let ref = element.dataset.ref;
         
+        if (articles.includes(ref)) {
+            let idqty = document.querySelector('.qtyref'+ element.dataset.ref);
+            idqty.innerHTML = d++;
+            console.log(idqty); 
+         
+        } 
+        else {
+       
+            let typeid = element.dataset.id;
+            let typeprice = element.dataset.price;
+            let info = document.createElement('tr');
+            info.className = 'trow'   
+            info.innerHTML = `<td><img style='width:50px; height:50px;' src='${element.dataset.img}'></td><td> ${typeid} </td><td> ${typeprice} € </td><td><span class="qtyref${ref}">1</span></td><td class="text-right"><button type="button" class="btn btn-primary  buttonModalCart">Supprimer du panier</bouton></td>`;
+            putinfo.appendChild(info);
+            articles.push(ref);
+         
+        } 
+        let removeCartItemButtons = document.querySelectorAll('.buttonModalCart');
         for (let i = 0; i < removeCartItemButtons.length; i++) {
             let button = removeCartItemButtons[i]
             button.addEventListener('click', removeCartItem)
@@ -72,5 +81,49 @@ infobutton.forEach(function (element) {
 
 
 
+        // let typeref = element.dataset.ref;
+        // let typeimg = element.dataset.img;
+        // let infoimg = document.createElement('img');
+        // infoimg.setAttribute('src', typeimg);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+// let infobutton = document.querySelectorAll(".getinfo");
+// let i = 0;
+
+// infobutton.forEach(function (element) {
+  
+    
+//     element.onclick = function () {
+//         let typeid = element.dataset.id;
+//         let typeprice = element.dataset.price;
+//         let info = document.createElement('tr');
+        
+//         info.className = 'trow'   
+//         info.innerHTML = `<td> produit : </td><td> ${typeid} </td><td> ${typeprice} € </td><td><input type="number" min="1" max="10"></td><td><button type="button" class="btn btn-primary buttonModalCart">Supprimer du panier</bouton></td>`;
+//         putinfo.appendChild(info);
+        
+//         let removeCartItemButtons = document.querySelectorAll('.buttonModalCart');
+//         for (let i = 0; i < removeCartItemButtons.length; i++) {
+//             let button = removeCartItemButtons[i]
+//             button.addEventListener('click', removeCartItem)
+//         }
+//         function removeCartItem(event) {
+//                let buttonCliked = event.target;
+//                buttonCliked.parentElement.parentElement.remove()
+//         }
+//     }
+// });
 
