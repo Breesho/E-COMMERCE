@@ -64,7 +64,6 @@ idLens.addEventListener('click', function () {
 
 
 let infobutton = document.querySelectorAll(".getinfo");
-let elementP = document.querySelector("p");
 
 
 infobutton.forEach(function (element) {
@@ -72,22 +71,24 @@ infobutton.forEach(function (element) {
     element.onclick = function () {
         let typeid = element.dataset.id;
         let typeprice = element.dataset.price;
+        let typeref = element.dataset.ref
         let info = document.createElement('tr');
+        info.className = 'trRow';
         // info.id = 'trRow' + i;
         // i++
-        info.innerHTML = `<td>Produit :</td><td> ${typeid} </td><td> ${typeprice} </td><td><input type="number" min="1" max="10"></td><td><button type="button" class="btn btn-primary buttonModalCart">Supprimer du panier</bouton></td>`;
+        info.innerHTML = `<td> ${typeref} </td><td> ${typeid} </td><td> ${typeprice} </td><td><input class="quantity-input" type="number" value="1" min="1" max="10"></td><td><button type="button" class="btn btn-primary buttonModalCart">Supprimer du panier</bouton></td>`;
         putinfo.appendChild(info);
-        let buttonRemove = document.getElementsByClassName('.buttonModalCart');
-        
+
+
+        let removerow = document.querySelectorAll('.trRow');
+        for (let i = 0; i < removerow.length; i++) {
+
+            let deletebutton = removerow[i]
+            deletebutton.addEventListener('click', deleterow)
+        }
+
+        function deleterow() {
+            this.remove();
+        }
     }
-    
-    
 });
-
-
-
-
-
-
-
-
