@@ -47,15 +47,14 @@ infobutton.forEach(function (element) {
     element.onclick = function () {
 
         let ref = element.dataset.ref;
-      
+
         if (articles.includes(ref)) {
 
             let idqty = document.querySelector('.qtyref' + element.dataset.ref);
             d++
             idqty.innerHTML = d;
             calculrow();
-        }
-        else {
+        } else {
 
             let typeid = element.dataset.id;
             let typeprice = element.dataset.price;
@@ -70,18 +69,12 @@ infobutton.forEach(function (element) {
 
         let removeCartItemButtons = document.querySelectorAll('.buttonModalCart');
 
- 
-
         for (let i = 0; i < removeCartItemButtons.length; i++) {
-            
+
             let button = removeCartItemButtons[i]
             button.addEventListener('click', removeCartItem)
-           
+
         }
-      
-
-
-
 
         function removeCartItem(event) {
             let buttonCliked = event.target;
@@ -92,38 +85,32 @@ infobutton.forEach(function (element) {
             console.log(idRowProduct)
             console.log(articles)
             d = 1;
-            
-       
+
+
         }
-      
+
         function calculrow() {
             let idTotalRow = document.querySelector('.totalrow' + element.dataset.ref);
             let calculprice = parseInt(element.dataset.price);
             let calcultqty = d;
             idTotalRow.innerHTML = calculprice * calcultqty;
             addition();
-        }   
+        }
 
         function addition() {
             let total = 0;
             let sousTotalArray = document.querySelectorAll('.soustotal');
-            
+
             sousTotalArray.forEach(element => {
                 total += +element.innerHTML;
-              
-                if (articles.length > 0) {
-                    totalprice.innerHTML = total;
-                } else {
-                    totalprice.innerHTML = 0;
-                }
             });
-            
+
+            if (articles.length < 0) {
+                totalprice.innerHTML = 0;
+            } else {
+                totalprice.innerHTML = 'Prix Total du Panier : ' + total + '€';
+            }
         }
-       
     }
 
 });
-
-
-
-
