@@ -47,7 +47,7 @@ infobutton.forEach(function (element) {
     element.onclick = function () {
 
         let ref = element.dataset.ref;
-
+      
         if (articles.includes(ref)) {
 
             let idqty = document.querySelector('.qtyref' + element.dataset.ref);
@@ -65,6 +65,7 @@ infobutton.forEach(function (element) {
             putinfo.appendChild(info);
             calculrow();
             articles.push(ref);
+            console.log(articles)
         }
 
         let removeCartItemButtons = document.querySelectorAll('.buttonModalCart');
@@ -87,9 +88,11 @@ infobutton.forEach(function (element) {
             let idRowProduct = event.target.dataset.buttonid;
             articles.splice(articles.indexOf(idRowProduct), 1);
             buttonCliked.parentElement.parentElement.remove();
+            addition();
+            console.log(idRowProduct)
             console.log(articles)
             d = 1;
-            addition();
+            
        
         }
       
@@ -108,10 +111,10 @@ infobutton.forEach(function (element) {
             sousTotalArray.forEach(element => {
                 total += +element.innerHTML;
               
-                if (articles.length == 0) {
-                    totalprice.innerHTML = 0;
-                } else {
+                if (articles.length > 0) {
                     totalprice.innerHTML = total;
+                } else {
+                    totalprice.innerHTML = 0;
                 }
             });
             
