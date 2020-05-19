@@ -59,7 +59,13 @@ infobutton.forEach(function (element) {
             let typeprice = element.dataset.price;
             let info = document.createElement('tr');
             info.className = 'trow'
-            info.innerHTML = `<td><img style='width:50px; height:50px;' src='${element.dataset.img}'></td><td> ${typeid} </td><td> ${typeprice} € </td><td><span class="qtyref${ref}">1</span></td><td><span class="totalrow${ref} soustotal"></span></td><td class="text-right"><button type="button" class="btn btn-primary buttonModalCart" data-buttonid="${element.dataset.ref}">Supprimer du panier</bouton></td>`;
+            info.innerHTML = 
+            `<td><img style='width:50px; height:50px;' src='${element.dataset.img}'></td>
+            <td> ${typeid} </td>
+            <td> ${typeprice} € </td>
+            <td><button class="btn btn-primary removeQty buttonQuantities"> - </button><span class="qtyref${ref}">1</span><button class="btn btn-primary addQty buttonQuantities"> + </button></td>
+            <td><span class="totalrow${ref} soustotal"></span></td>
+            <td class="text-right"><button type="button" class="btn btn-primary buttonModalCart" data-buttonid="${element.dataset.ref}">Supprimer du panier</bouton></td>`;
             putinfo.appendChild(info);
             calculrow();
             articles.push(ref);
@@ -116,6 +122,28 @@ infobutton.forEach(function (element) {
             }
         }
 
+
+        let idRemoveQty = document.querySelectorAll('.removeQty');
+        let idqty = document.querySelector('.qtyref' + element.dataset.ref);
+
+        idRemoveQty.forEach(function (element) {
+            element.onclick = function () {
+                d--
+                idqty.innerHTML = d;
+                calculrow();
+            }
+        });
+
+
+        let idAddQty = document.querySelectorAll('.addQty');
+        
+        idAddQty.forEach(function (element) {
+            element.onclick = function () {    
+                d++
+                idqty.innerHTML = d;
+                calculrow();
+            }
+        });
         
     }
 
