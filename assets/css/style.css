@@ -27,10 +27,27 @@ body, html {
 .buttonModalCart {
     width: 190px;
     height: 40px;
+    background-color: #7971ea;
+}
+.buttonModalCart:hover {
+    background-color: #343a40;
+    color: #7971ea;
+}
+.commandButton {
+    background-color: #7971ea;
+    color: white;
+}
+.commandButton:hover {
+    background-color: #343a40;
+    color: #7971ea;
 }
 a.getinfo  {
     background-color: #7971ea;
     color: white;
+}
+a.getinfo:hover  {
+    background-color: #343a40;
+    color: #7971ea;
 }
 .card-footer{
     background-color:white;

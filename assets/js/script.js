@@ -38,7 +38,7 @@ idLens.addEventListener('click', function () {
 
 
 
-let infobutton = document.querySelectorAll(".getinfo");
+let infobutton = document.querySelectorAll('.getinfo');
 let i = 0;
 let articles = [];
 infobutton.forEach(function (element) {
@@ -49,7 +49,6 @@ infobutton.forEach(function (element) {
         let ref = element.dataset.ref;
 
         if (articles.includes(ref)) {
-
             let idqty = document.querySelector('.qtyref' + element.dataset.ref);
             d++
             idqty.innerHTML = d;
@@ -109,8 +108,20 @@ infobutton.forEach(function (element) {
                 totalprice.innerHTML = 0;
             } else {
                 totalprice.innerHTML = 'Prix Total du Panier : ' + total + '€';
+                totalprice.style.color = 'white';
+                totalprice.style.backgroundColor = '#7971ea';
+                totalprice.style.padding = '5px';
+                totalprice.style.fontWeight = 'bold';
+                totalprice.style.borderRadius = '5px';
             }
         }
+
+        
     }
 
 });
+
+let buttonConfirmCart = document.getElementById('confirmCart');
+buttonConfirmCart.addEventListener('click', function () {
+        alert('Votre panier a bien été commandé');
+})
