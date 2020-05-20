@@ -49,22 +49,19 @@ infobutton.forEach(function (element) {
         let ref = element.dataset.ref;
 
         if (articles.includes(ref)) {
-            let idqty = document.querySelector('.qtyref' + element.dataset.ref);
-            d++
-            idqty.innerHTML = d;
-            calculrow();
+            alert('Le produit sélectionné est déjà dans le panier');
         } else {
-
             let typeid = element.dataset.id;
             let typeprice = element.dataset.price;
             let info = document.createElement('tr');
+            info.id = 'trCart' + ref;
             info.className = 'trow'
-            info.innerHTML = 
-            `<td><img style='width:50px; height:50px;' src='${element.dataset.img}'></td>
+            info.innerHTML =
+                `<td><img style='width:50px; height:50px;' src='${element.dataset.img}'></td>
             <td> ${typeid} </td>
-            <td> ${typeprice} € </td>
-            <td><button class="btn btn-primary removeQty buttonQuantities"> - </button><span class="qtyref${ref}">1</span><button class="btn btn-primary addQty buttonQuantities"> + </button></td>
-            <td><span class="totalrow${ref} soustotal"></span></td>
+            <td id="price${ref}" data-pricearticle="${typeprice}"> ${typeprice} €</td>
+            <td><button class="btn btn-primary removeQty buttonQuantities" data-idarticle="${ref}"> - </button><span id="qtyref${ref}">1</span><button class="btn btn-primary addQty buttonQuantities" data-idaddarticle="${ref}"> + </button></td>
+            <td><span class="totalrow${ref} soustotal" id="sousTotal${ref}"></span></td>
             <td class="text-right"><button type="button" class="btn btn-primary buttonModalCart" data-buttonid="${element.dataset.ref}">Supprimer du panier</bouton></td>`;
             putinfo.appendChild(info);
             calculrow();
@@ -83,12 +80,13 @@ infobutton.forEach(function (element) {
 
         function removeCartItem(event) {
             let buttonCliked = event.target;
+            console.log(buttonCliked);
             let idRowProduct = event.target.dataset.buttonid;
             articles.splice(articles.indexOf(idRowProduct), 1);
             buttonCliked.parentElement.parentElement.remove();
             addition();
-            console.log(idRowProduct)
-            console.log(articles)
+            console.log(idRowProduct);
+            console.log(articles);
             d = 1;
 
 
@@ -122,34 +120,56 @@ infobutton.forEach(function (element) {
             }
         }
 
-
+        // je sélectionne le bouton du produit que je viens de créer
         let idRemoveQty = document.querySelectorAll('.removeQty');
-        let idqty = document.querySelector('.qtyref' + element.dataset.ref);
 
-        idRemoveQty.forEach(function (element) {
+        // j'attribue une fonction onclick à tous les boutons
+        idRemoveQty.forEach(element => {
             element.onclick = function () {
-                d--
-                idqty.innerHTML = d;
-                calculrow();
+                let spanId = document.getElementById('qtyref' + this.dataset.idarticle);
+                let sousTotalId = document.getElementById('sousTotal' + this.dataset.idarticle);
+                let priceId = document.getElementById('price' + this.dataset.idarticle);
+                let qtySpan = spanId.innerHTML;
+
+                qtySpan--;
+                if (qtySpan <= 0) {
+                    let trToRemove = document.getElementById('trCart' + this.dataset.idarticle);
+                    articles.splice(articles.indexOf(this.dataset.idarticle), 1);
+                    trToRemove.parentNode.removeChild(trToRemove);
+                } else {
+                    spanId.innerHTML = qtySpan;
+                    sousTotalId.innerHTML = +qtySpan * +priceId.dataset.pricearticle;          
+                }
+                addition();
             }
         });
 
 
         let idAddQty = document.querySelectorAll('.addQty');
-        
-        idAddQty.forEach(function (element) {
-            element.onclick = function () {    
-                d++
-                idqty.innerHTML = d;
-                calculrow();
+
+        idAddQty.forEach(element => {
+            element.onclick = function () {
+                let spanId = document.getElementById('qtyref' + this.dataset.idaddarticle);
+                let sousTotalId = document.getElementById('sousTotal' + this.dataset.idaddarticle);
+                let priceId = document.getElementById('price' + this.dataset.idaddarticle);
+                let qtySpan = spanId.innerHTML;
+
+                qtySpan++;
+                if (qtySpan > 10) {
+                    alert('Commande de maximum 10 fois par produit')
+                } else {
+                    spanId.innerHTML = qtySpan;
+                    sousTotalId.innerHTML = +qtySpan * +priceId.dataset.pricearticle;          
+                }
+                addition();
             }
         });
-        
+
     }
 
 });
 
 let buttonConfirmCart = document.getElementById('confirmCart');
 buttonConfirmCart.addEventListener('click', function () {
-        alert('Votre panier a bien été commandé');
+    alert('Votre panier a bien été commandé');
 })

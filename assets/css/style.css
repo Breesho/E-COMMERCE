@@ -23,13 +23,20 @@ body, html {
     background-size:cover;
     background-position: center bottom;
 }
-
 .buttonModalCart {
     width: 190px;
     height: 40px;
     background-color: #7971ea;
 }
 .buttonModalCart:hover {
+    background-color: #343a40;
+    color: #7971ea;
+}
+.buttonQuantities {
+    background-color: #7971ea;
+    color: white;
+}
+.buttonQuantities:hover {
     background-color: #343a40;
     color: #7971ea;
 }
